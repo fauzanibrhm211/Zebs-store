@@ -1,6 +1,5 @@
-/* ZEBS STORE - FORM LOGIC (FIXED & FULL LIST) */
+/* ZEBS STORE - FORM LOGIC (FINAL REPAIR) */
 
-// 1. KONFIGURASI LABEL & INPUT
 const allGames = {
     "Jual Rank Server DurianSMA": { label: "Rank", needsZone: false },
     "Free Fire": { label: "Diamonds", needsZone: false },
@@ -24,22 +23,13 @@ const allGames = {
     "Plant vs Zombie": { label: "Gems", needsZone: false }
 };
 
-// 2. DAFTAR HARGA (TIDAK DIUBAH, CUMA DITAMBAH LISTNYA)
+// ... (Daftar Harga Tetap Sama Seperti Sebelumnya) ...
 const hargaFF = [{q: 5, p: "Rp 500"}, {q: 12, p: "Rp 500"}, {q: 120, p: "Rp 4.500"}, {q: 150, p: "Rp 7.000"}, {q: 170, p: "Rp 9.500"}, {q: 300, p: "Rp 14.000"}, {q: 380, p: "Rp 19.000"}, {q: 500, p: "Rp 30.000"}, {q: 600, p: "Rp 39.000"}, {q: 610, p: "Rp 47.000"}, {q: 1000, p: "Rp 56.000"}, {q: 2000, p: "Rp 100.000"}, {q: 3000, p: "Rp 200.000"}, {q: 4500, p: "Rp 350.000"}, {q: 8000, p: "Rp 450.000"}, {q: 5000, p: "Rp 500.000"}, {q: 5700, p: "Rp 540.000"}, {q: 6500, p: "Rp 570.000"}, {q: 7500, p: "Rp 600.000"}, {q: 100000, p: "Rp 920.000"}];
 const hargaML = [{q: 5, p: "Rp 1.000"}, {q: 12, p: "Rp 2.000"}, {q: 19, p: "Rp 3.100"}, {q: 28, p: "Rp 7.000"}, {q: 44, p: "Rp 12.000"}, {q: 59, p: "Rp 16.000"}, {q: 85, p: "Rp 23.000"}, {q: 170, p: "Rp 35.000"}, {q: 215, p: "Rp 38.000"}, {q: 350, p: "Rp 45.000"}, {q: 1000, p: "Rp 100.000"}, {q: 1200, p: "Rp 110.000"}, {q: 1300, p: "Rp 120.000"}, {q: 2000, p: "Rp 150.000"}, {q: 2700, p: "Rp 230.000"}, {q: 3000, p: "Rp 305.000"}, {q: 3700, p: "Rp 440.000"}, {q: 5000, p: "Rp 530.000"}, {q: 100000, p: "Rp 1.250.000"}, {q: 2000000, p: "Rp 2.450.000"}];
 const hargaRoblox = [{q: 80, p: "Rp 16.000"}, {q: 160, p: "Rp 29.000"}, {q: 240, p: "Rp 30.000"}, {q: 320, p: "Rp 39.500"}, {q: 400, p: "Rp 44.000"}, {q: 480, p: "Rp 88.000"}, {q: 560, p: "Rp 99.000"}, {q: 640, p: "Rp 110.000"}, {q: 720, p: "Rp 456.000"}, {q: 800, p: "Rp 478.000"}, {q: 880, p: "Rp 590.000"}, {q: 1000, p: "Rp 1.000.000"}, {q: 1790, p: "Rp 1.500.000"}, {q: 2000, p: "Rp 1.890.000"}, {q: 3400, p: "Rp 2.200.000"}, {q: 4900, p: "Rp 2.300.000"}, {q: 3100, p: "Rp 2.870.000"}, {q: 8900, p: "Rp 2.300.000"}, {q: 9800, p: "Rp 3.980.000"}, {q: "1jt", p: "Rp 10.000.000"}];
 const daftarRank = [{q: "Killer", p: "Cek WA"}, {q: "Death", p: "Cek WA"}, {q: "Helper", p: "Cek WA"}, {q: "Lagend", p: "Cek WA"}, {q: "Water", p: "Cek WA"}, {q: "Lava", p: "Cek WA"}, {q: "Iron", p: "Cek WA"}, {q: "Gold", p: "Cek WA"}, {q: "Diamond", p: "Cek WA"}, {q: "VIP", p: "Cek WA"}, {q: "Admin", p: "Cek WA"}];
+const hargaLain = [{q: 10, p: "Rp 4.000"}, {q: 20, p: "Rp 8.000"}, {q: 30, p: "Rp 12.000"}, {q: 40, p: "Rp 16.000"}, {q: 50, p: "Rp 20.000"}, {q: 100, p: "Rp 40.000"}, {q: 150, p: "Rp 60.000"}, {q: 200, p: "Rp 80.000"}, {q: 250, p: "Rp 100.000"}, {q: 300, p: "Rp 120.000"}, {q: 400, p: "Rp 160.000"}, {q: 500, p: "Rp 200.000"}, {q: 600, p: "Rp 240.000"}, {q: 700, p: "Rp 280.000"}, {q: 800, p: "Rp 320.000"}, {q: 900, p: "Rp 360.000"}, {q: 1000, p: "Rp 400.000"}, {q: 1500, p: "Rp 600.000"}, {q: 2000, p: "Rp 800.000"}, {q: 5000, p: "Rp 2.000.000"}];
 
-// HARGA LAIN (DITAMBAH JADI 20 BIAR RAME)
-const hargaLain = [
-    {q: 10, p: "Rp 4.000"}, {q: 20, p: "Rp 8.000"}, {q: 30, p: "Rp 12.000"}, {q: 40, p: "Rp 16.000"}, 
-    {q: 50, p: "Rp 20.000"}, {q: 100, p: "Rp 40.000"}, {q: 150, p: "Rp 60.000"}, {q: 200, p: "Rp 80.000"}, 
-    {q: 250, p: "Rp 100.000"}, {q: 300, p: "Rp 120.000"}, {q: 400, p: "Rp 160.000"}, {q: 500, p: "Rp 200.000"}, 
-    {q: 600, p: "Rp 240.000"}, {q: 700, p: "Rp 280.000"}, {q: 800, p: "Rp 320.000"}, {q: 900, p: "Rp 360.000"}, 
-    {q: 1000, p: "Rp 400.000"}, {q: 1500, p: "Rp 600.000"}, {q: 2000, p: "Rp 800.000"}, {q: 5000, p: "Rp 2.000.000"}
-];
-
-// 3. LOGIKA UTAMA
 let selectedNominal = "";
 const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('game') || "Free Fire";
@@ -53,19 +43,19 @@ window.onload = () => {
     const inputZone = document.getElementById('zoneid');
 
     if (inputUser) {
-        // PERBAIKAN: Gunakan TIPE TEXT untuk Rank & Roblox
-        if (gameName === "Jual Rank Server DurianSMA") {
-            inputUser.type = "text";
-            inputUser.placeholder = "Masukkan Nama Akun Minecraft";
-        } else if (gameName === "Roblox") {
-            inputUser.type = "text";
-            inputUser.placeholder = "Masukkan Username Roblox";
-        } else if (gameName.includes("Google Play") || gameName.includes("Steam")) {
+        // PERBAIKAN: Gunakan toLowerCase() agar pengecekan nama game lebih akurat
+        const lowerGame = gameName.toLowerCase();
+        
+        if (lowerGame.includes("roblox") || lowerGame.includes("duriansma")) {
+            inputUser.type = "text"; 
+            inputUser.setAttribute('type', 'text'); // Paksa dua kali biar browser nurut
+            inputUser.placeholder = "Masukkan Username (Huruf/Angka)";
+        } else if (lowerGame.includes("google play") || lowerGame.includes("steam")) {
             inputUser.type = "text";
             inputUser.placeholder = "Masukkan Nomor WA / Email";
         } else {
             inputUser.type = "number";
-            inputUser.placeholder = "Masukkan Player ID / UID";
+            inputUser.placeholder = "Masukkan Player ID / UID (Angka)";
         }
     }
 
@@ -80,6 +70,8 @@ window.onload = () => {
 
     renderNominals();
 };
+
+// ... (Sisa kodingan renderNominals, pilihNom, dan gasOrder tetap sama) ...
 
 function renderNominals() {
     const grid = document.getElementById('nominalGrid');
