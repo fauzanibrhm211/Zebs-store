@@ -1,11 +1,11 @@
-/* ZEBS STORE - Core Logic */
+//* ZEBS STORE - Core Logic */
 document.addEventListener('DOMContentLoaded', () => {
-    renderGames(); // Masukin game ke HTML
+    // 1. Langsung munculin loader
     initLoadingScreen();
-    // initGameSelection tidak perlu dipanggil manual karena sudah masuk di renderGames
+    // 2. Langsung render game tanpa nunggu
+    renderGames(); 
 });
 
-// Fungsi untuk nampilin daftar game (Pindahin dari HTML ke sini)
 function renderGames() {
     const gameGrid = document.getElementById('gameGrid');
     if (!gameGrid) return;
@@ -40,31 +40,30 @@ function renderGames() {
         </a>
     `).join('');
 
-    // Jalankan animasi klik setelah render selesai
     initGameSelection();
 }
 
-// 1. Loading Screen
 function initLoadingScreen() {
+    // Cek dulu biar gak bikin loader double
+    if (document.getElementById('loader-overlay')) return;
+    
     const loader = document.createElement('div');
     loader.id = 'loader-overlay';
     loader.style.cssText = `
         position: fixed; inset: 0; background: #0a0510; z-index: 9999;
         display: flex; justify-content: center; align-items: center;
-        transition: opacity 0.8s ease;
+        transition: opacity 0.5s ease;
     `;
     loader.innerHTML = '<div class="loader"></div>'; 
     document.body.appendChild(loader);
 
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.remove(), 800);
-        }, 500);
-    });
+    // Langsung hapus loader setelah 1 detik biar gak kelamaan nunggu
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+    }, 1000);
 }
 
-// 2. Fungsi Klik Game Card
 function initGameSelection() {
     const gameCards = document.querySelectorAll('.game-card');
     gameCards.forEach(card => {
@@ -80,8 +79,8 @@ function initGameSelection() {
                 document.body.style.opacity = '0';
                 setTimeout(() => {
                     window.location.href = targetUrl;
-                }, 500);
-            }, 800);
+                }, 400);
+            }, 600);
         });
     });
 }
@@ -94,6 +93,6 @@ function showToast(message) {
         document.body.appendChild(toast);
     }
     toast.innerText = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    toast.className = 'toast show'; // Langsung set class
+    setTimeout(() => toast.className = 'toast', 3000);
 }
