@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Checkout - ZEBS STORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="form.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="checkout-container">
+        <div class="header-nav">
+            <a href="index.html" class="btn-back">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Kembali
+            </a>
+            <h1 id="gameTitle">Top Up Game</h1>
+        </div>
+
+        <div class="card animate-up">
+            <div class="card-header">
+                <span class="step-num">1</span>
+                <h3>Masukkan Data Akun</h3>
+            </div>
+            <div class="input-group">
+                <input type="number" id="userid" placeholder="Masukkan ID / UID Akun" required>
+                <input type="number" id="zoneid" placeholder="(Server/Zone)" style="display:none;">
+            </div>
+            <p id="hintText" class="hint">*Mohon teliti, kesalahan ID bukan tanggung jawab kami.</p>
+        </div>
+
+        <div class="card animate-up" style="animation-delay: 0.1s;">
+            <div class="card-header">
+                <span class="step-num">2</span>
+                <h3>Pilih Nominal</h3>
+            </div>
+            <div class="nominal-grid" id="nominalGrid">
+                <p style="color: #888; text-align: center; grid-column: 1/-1;">Memuat daftar harga...</p>
+            </div>
+        </div>
+
+        <div class="card animate-up" style="animation-delay: 0.2s;">
+            <div class="card-header">
+                <span class="step-num">3</span>
+                <h3>Metode Pembayaran</h3>
+            </div>
+            <div class="payment-group">
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="DANA" required>
+                    <div class="pay-box">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" alt="DANA" style="height: 20px; filter: brightness(0) invert(1);">
+                        <span>DANA</span>
+                    </div>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="GOPAY">
+                    <div class="pay-box">
+                        <span>GOPAY</span>
+                    </div>
+                </label>
+                <label class="pay-option">
+                    <input type="radio" name="payment" value="QRIS">
+                    <div class="pay-box">
+                        <span>QRIS (All Payment)</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="footer-action">
+            <button type="button" id="btnOrder" class="btn-buy" onclick="gasOrder()">
+                Beli Sekarang
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <script src="form.js"></script>   </body>
+</html>
+
