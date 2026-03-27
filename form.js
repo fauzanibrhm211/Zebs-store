@@ -1,4 +1,4 @@
-/* ZEBS STORE - ALL-IN-ONE FORM LOGIC */
+/* ZEBS STORE - ALL-IN-ONE FORM LOGIC (FINAL & ANTI-DOUBLE) */
 
 // 1. DATA GAME & HARGA (DITANAM DISINI BIAR GAK ILANG)
 const allGames = {
@@ -59,7 +59,7 @@ function renderNominals() {
     const grid = document.getElementById('nominalGrid');
     if (!grid) return;
     
-    grid.innerHTML = ""; // SAPU BERSIH: Anti Double
+    grid.innerHTML = ""; // SAPU BERSIH: Biar Gak Double
 
     let list = hargaLain;
     if (gameName.includes("DurianSMA")) list = daftarRank;
