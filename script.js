@@ -1,12 +1,51 @@
 /* ZEBS STORE - Core Logic */
 document.addEventListener('DOMContentLoaded', () => {
+    renderGames(); // Masukin game ke HTML
     initLoadingScreen();
-    initGameSelection();
+    // initGameSelection tidak perlu dipanggil manual karena sudah masuk di renderGames
 });
+
+// Fungsi untuk nampilin daftar game (Pindahin dari HTML ke sini)
+function renderGames() {
+    const gameGrid = document.getElementById('gameGrid');
+    if (!gameGrid) return;
+
+    const games = [
+        {n: "Jual Rank Server DurianSMA", i: "assets/mc.jpg", p: "Minecraft Server"},
+        {n: "Free Fire", i: "assets/ff.jpg", p: "Garena"},
+        {n: "Free Fire Max", i: "assets/ff-max.jpg", p: "Garena"},
+        {n: "Mobile Legend", i: "assets/ml.jpg", p: "Moonton"},
+        {n: "Honor of Kings", i: "assets/hok.jpg", p: "Level Infinite"},
+        {n: "Genshin Impact", i: "assets/genshin.jpg", p: "HoYoverse"},
+        {n: "Blood Strike", i: "assets/bls.jpg", p: "NetEase"}, 
+        {n: "PUBG Mobile", i: "assets/pubg.jpg", p: "Tencent"},
+        {n: "Plant vs Zombie", i: "assets/pvz.jpg", p: "PopCap"},
+        {n: "Valorant", i: "assets/valorant.jpg", p: "Riot Games"},
+        {n: "Roblox", i: "assets/roblox.jpg", p: "Robux"},
+        {n: "Call of Duty Mobile", i: "assets/codm.jpg", p: "Activision"},
+        {n: "Point Blank", i: "assets/pb.jpg", p: "Zepetto"},
+        {n: "Stumble Guys", i: "assets/stumble.jpg", p: "Scopely"},
+        {n: "Eggy Party", i: "assets/eggy.jpg", p: "NetEase"},
+        {n: "Metal Slug", i: "assets/metal-slug.jpg", p: "VNG"},
+        {n: "Clash of Clans", i: "assets/coc.jpg", p: "Supercell"},
+        {n: "Google Play", i: "assets/gp.jpg", p: "Voucher"},
+        {n: "Steam Wallet", i: "assets/steam.jpg", p: "Valve"},
+        {n: "Hago", i: "assets/hago.jpg", p: "Diamonds"}
+    ];
+
+    gameGrid.innerHTML = games.map(g => `
+        <a href="form.html?game=${encodeURIComponent(g.n)}" class="game-card">
+            <div class="game-img-container"><img src="${g.i}" alt="${g.n}" class="game-img"></div>
+            <div class="game-info"><h4>${g.n}</h4><p>${g.p}</p></div>
+        </a>
+    `).join('');
+
+    // Jalankan animasi klik setelah render selesai
+    initGameSelection();
+}
 
 // 1. Loading Screen
 function initLoadingScreen() {
-    if (document.getElementById('loader-overlay')) return;
     const loader = document.createElement('div');
     loader.id = 'loader-overlay';
     loader.style.cssText = `
@@ -25,24 +64,17 @@ function initLoadingScreen() {
     });
 }
 
-// 2. Fungsi Klik Game Card (Penting untuk GitHub)
+// 2. Fungsi Klik Game Card
 function initGameSelection() {
     const gameCards = document.querySelectorAll('.game-card');
-    
     gameCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            // Kita biarkan link href jalan, tapi kita kasih animasi dulu
+            e.preventDefault();
             const targetUrl = this.getAttribute('href');
             const gameTitle = this.querySelector('h4').innerText;
 
-            e.preventDefault(); // Stop bentar buat munculin toast
-
-            // Simpan ke localStorage buat cadangan
-            localStorage.setItem('selectedGame', gameTitle);
-
             showToast(`Menyiapkan Top Up ${gameTitle}...`);
 
-            // Pindah halaman setelah animasi toast
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease';
                 document.body.style.opacity = '0';
