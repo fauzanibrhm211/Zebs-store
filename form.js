@@ -1,6 +1,5 @@
-/* ZEBS STORE - ALL-IN-ONE FORM LOGIC (FINAL & ANTI-DOUBLE) */
+/* ZEBS STORE - ALL-IN-ONE FORM LOGIC (FIXED FOR FF & FF MAX) */
 
-// 1. DATA GAME & HARGA (DITANAM DISINI BIAR GAK ILANG)
 const allGames = {
     "Jual Rank Server DurianSMA": { label: "Rank", needsZone: false },
     "Free Fire": { label: "Diamonds", needsZone: false },
@@ -30,17 +29,15 @@ const hargaRoblox = [{q: 80, p: "Rp 16.000"}, {q: 160, p: "Rp 29.000"}, {q: 240,
 const daftarRank = [{q: "Killer", p: "Cek WA"}, {q: "Death", p: "Cek WA"}, {q: "Helper", p: "Cek WA"}, {q: "Lagend", p: "Cek WA"}, {q: "Water", p: "Cek WA"}, {q: "Lava", p: "Cek WA"}, {q: "Iron", p: "Cek WA"}, {q: "Gold", p: "Cek WA"}, {q: "Diamond", p: "Cek WA"}, {q: "VIP", p: "Cek WA"}, {q: "Admin", p: "Cek WA"}];
 const hargaLain = [{q: 10, p: "Rp 4.000"}, {q: 20, p: "Rp 8.000"}, {q: 30, p: "Rp 12.000"}, {q: 40, p: "Rp 16.000"}, {q: 50, p: "Rp 20.000"}, {q: 100, p: "Rp 40.000"}, {q: 150, p: "Rp 60.000"}, {q: 200, p: "Rp 80.000"}, {q: 250, p: "Rp 100.000"}, {q: 300, p: "Rp 120.000"}, {q: 400, p: "Rp 160.000"}, {q: 500, p: "Rp 200.000"}, {q: 600, p: "Rp 240.000"}, {q: 700, p: "Rp 280.000"}, {q: 800, p: "Rp 320.000"}, {q: 900, p: "Rp 360.000"}, {q: 1000, p: "Rp 400.000"}, {q: 1500, p: "Rp 600.000"}, {q: 2000, p: "Rp 800.000"}, {q: 5000, p: "Rp 2.000.000"}];
 
-// 2. LOGIKA INTERFACE
 let selectedNominal = "";
 const urlParams = new URLSearchParams(window.location.search);
 const gameName = urlParams.get('game') || "Free Fire";
 const config = allGames[gameName] || { label: "Item", needsZone: false };
 
-window.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
     document.getElementById('gameTitle').innerText = "Top Up " + gameName;
     const inputUser = document.getElementById('userid');
     
-    // ATUR HURUF ATAU ANGKA
     const lower = gameName.toLowerCase();
     if (lower.includes("roblox") || lower.includes("duriansma")) {
         inputUser.type = "text"; 
@@ -53,19 +50,25 @@ window.addEventListener('DOMContentLoaded', () => {
     if (config.needsZone) document.getElementById('zoneid').style.display = "block";
     
     renderNominals();
-});
+};
 
 function renderNominals() {
     const grid = document.getElementById('nominalGrid');
     if (!grid) return;
     
-    grid.innerHTML = ""; // SAPU BERSIH: Biar Gak Double
+    grid.innerHTML = ""; // Bersihin total biar nggak double
 
     let list = hargaLain;
-    if (gameName.includes("DurianSMA")) list = daftarRank;
-    else if (gameName.includes("Free Fire")) list = hargaFF;
-    else if (gameName.includes("Mobile Legend")) list = hargaML;
-    else if (gameName.includes("Roblox")) list = hargaRoblox;
+    // Perbaikan logic deteksi game biar akurat
+    if (gameName.includes("DurianSMA")) {
+        list = daftarRank;
+    } else if (gameName.includes("Free Fire")) { // Ini bakal cover "Free Fire" dan "Free Fire Max"
+        list = hargaFF;
+    } else if (gameName.includes("Mobile Legend")) {
+        list = hargaML;
+    } else if (gameName.includes("Roblox")) {
+        list = hargaRoblox;
+    }
 
     list.forEach(item => {
         const card = document.createElement('div');
